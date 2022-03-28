@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/datajpa
+    username: sa
+    password:
+    dirver-class-name: org.h2.Driver
+  cloud:
+    gcp:
+      credentials:
+        location: classpath:/key/My First Project-7a4d42c9b75d.json
+
+  jpa:
+    hibernate:
+      ddl-auto: create # application 로딩 시점에 테이블을 모두 드랍 후에 다시 생성
+    properties:
+      hibernate:
+#        dialect: org.hibernate.dialect.Oracle10gDialect
+#        show_sql: true # jpa가 실행하는 모든 행위를 콘솔에 찍는 것
+        format_sql: true # 포매팅해서 보기 좋게 출력해줌
+
+logging:
+  level:
+    org.hibernate.SQL: debug # 로그로 기록을 남긴다.
+#    org.hibernate.type: trace # 바인딩된 파라미터까지 볼 수 있는 옵션
+
