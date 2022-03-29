@@ -4,11 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.spring.vision.CloudVisionTemplate;
-import com.heekng.imageOcr.dto.CustomDto1;
-import com.heekng.imageOcr.dto.CustomDto2;
-import com.heekng.imageOcr.dto.CustomDto3;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +30,11 @@ public class VisionController {
     private ResourceLoader resourceLoader;
 
     private ObjectMapper objectMapper = new ObjectMapper();
+
+    @Value("${naver.api.clientId}")
+    String clientId;//애플리케이션 클라이언트 아이디값";
+    @Value("${naver.api.clientSecret}")
+    String clientSecret;//애플리케이션 클라이언트 시크릿값";
 
     @GetMapping("/runImageConvert")
     public String runImageConvert(Model model) throws JsonProcessingException {
@@ -57,8 +60,6 @@ public class VisionController {
     }
 
     public String convertText(String inputText) {
-        String clientId = "29ei0bx5530Wn0bRBVRA";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "Cc5I8Ub82y";//애플리케이션 클라이언트 시크릿값";
 
         String apiURL = "https://openapi.naver.com/v1/papago/n2mt";
         String text;
